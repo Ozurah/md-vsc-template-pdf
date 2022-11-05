@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>file.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+<link rel="stylesheet" href="file:///d%3A/Jonas/Desktop/md-vsc-template-pdf/style.css" type="text/css">
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<p>@import &quot;style.less&quot;</p>
+<p><span style="color: purple; font-weight: bold">⚠️ ce document est adapté pour être exporté avec <code>Markdown Preview Enhanced</code>⚠️</span></p>
+<h1 id="extensions-vscode">Extensions VSCode</h1>
+<h2 id="markdown-all-in-one">Markdown all in one</h2>
+<ul>
+<li>https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one</li>
+<li>TDM
+<ul>
+<li><code>ctrl shift p : &gt;Create table content</code></li>
+<li>va générer la table des matières (sans le titre)</li>
+<li>Ajouter la balise <code>&lt;!-- omit from toc --&gt;</code> au titre pour ne pas l'afficher dans la table des matières</li>
+</ul>
+</li>
+<li>De bon raccourcis claviers</li>
+<li>Prise en charge de Latex (formules); mermaid; et bien d'autres</li>
+<li>Prévisualisation <code>ctrl K, V</code> (<strong>Sa ouvre juste le prévisualiseur de base de VSC</strong>)
+<ul>
+<li><span style="color: red">Pas d'émoji de type <code>:code:</code></span></li>
+<li><span style="color: orange">2 ligne sans espace entre == à la suite du texte (fonctionnement normal de MD)</span></li>
+<li><span style="color: green">UI simple mais efficace, on vois quel ligne est éditée</span></li>
+</ul>
+</li>
+<li>Export HTML
+<ul>
+<li><code>ctrl shift p : &gt;Print current document to HTML</code></li>
+<li>Passable, mais sans plus (manque un peu de colorisation comparé à la prévisualisation)</li>
+<li>1ère ligne du fichier markdown : <code>&lt;!-- title: Guide Markdown --&gt;</code> permet de définir le titre de la page HTML, sinon prend le 1er titre</li>
+<li><span style="color: red">Ne supporte pas le front-matter (Markdown Preview Enhanced)</span></li>
+</ul>
+</li>
+</ul>
+<h2 id="markdown-preview-enhanced">Markdown preview enhanced</h2>
+<ul>
+<li>https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced</li>
+<li>Toutes les options sont bien expliqué dans la doc : https://github.com/shd101wyy/markdown-preview-enhanced/tree/master/docs</li>
+<li>Prévisualisation <code>ctrl K, V</code>
+<ul>
+<li>Rendu très bien</li>
+<li><span style="color: orange">2 ligne sans espace entre == comme si on avait un <code>&lt;br&gt;</code> (c'est une option) (fonctionnement normal de <code>GitHub Flavored Markdown</code>)</span></li>
+<li><span style="color: green">gère les notes de bas de page (<code>[^1]</code>)</span></li>
+<li><span style="color: green">Checkbox modifiable dans la prévisu</span></li>
+<li>gère la visualisation Latex</li>
+<li>Exports :
+<ul>
+<li><span style="color: green">Export &quot;HTML&quot;, le rendu correspond à la prévisualisation</span> (thème de base)</li>
+<li>Export &quot;Puppeteer&quot; est très puissant, mais demande de la configuration dans le <code>front-matter</code>
+<ul>
+<li>Gère les #page</li>
+<li><span style="color: red">Malheureusement, le fichier CSS ne prend pas pour le &quot;headerTemplate&quot; et le &quot;footerTemplate&quot; (il faut configurer directement dans le <code>front-formatter</code>.</span></li>
+</ul>
+</li>
+<li>les autres exports sont moyen (demande des installations supplémentaires, non testé)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><span style="color: red">L'auto-génération de la TOC n'est pas fameuse</span> <span style="color: #46b7ae; font-style: italic; font-size: 0.85rem">// Mais en utilisant celle de <code>Markdown All in One</code>, le rendu est top</span></li>
+</ul>
+<h2 id="markdown-pdf">Markdown PDF</h2>
+<ul>
+<li>https://marketplace.visualstudio.com/items?itemName=yzane.markdown-pdf</li>
+<li>Pas testé plus que ça, car après configuration des précédentes extensions elle se suffisent. C'était l'extension que j'utilisais avant de tester les autres.
+<ul>
+<li>La configuration de l'entête et du pied de page se fait dans le fichier de configuration de l'extension (settings.json), ce qui n'est pas fameux pour des informations pour des fichiers spécifiques.</li>
+<li>Pour afficher les #page c'est pas aisé</li>
+</ul>
+</li>
+</ul>
+<h2 id="paste-image">Paste image</h2>
+<ul>
+<li>https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image</li>
+<li><code>ctrl shift v</code> : permet de coller une image dans le markdown (remapé, initialement <code>Ctrl Alt V</code>)</li>
+</ul>
+<h1 id="table-des-mati%C3%A8res----omit-from-toc">Table des matières <!-- omit from toc --></h1>
+<ul>
+<li><a href="#extensions-vscode">Extensions VSCode</a>
+<ul>
+<li><a href="#markdown-all-in-one">Markdown all in one</a></li>
+<li><a href="#markdown-preview-enhanced">Markdown preview enhanced</a></li>
+<li><a href="#markdown-pdf">Markdown PDF</a></li>
+<li><a href="#paste-image">Paste image</a></li>
+</ul>
+</li>
+<li><a href="#1-num%C3%A9ros-de-titres">1. Numéros de titres</a>
+<ul>
+<li><a href="#11-titre-2">1.1. Titre 2</a>
+<ul>
+<li><a href="#111-sous-titre">1.1.1 Sous titre</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2-titre-3">2. Titre 3</a></li>
+<li><a href="#styles">Styles</a></li>
+<li><a href="#diagrammes">Diagrammes</a>
+<ul>
+<li><a href="#plantuml">PlantUML</a></li>
+<li><a href="#mermaid">Mermaid</a></li>
+</ul>
+</li>
+<li><a href="#nouvelle-page-html--pdf">Nouvelle page (HTML / PDF)</a></li>
+<li><a href="#markdown-preview-enhanced-1">Markdown Preview Enhanced</a>
+<ul>
+<li><a href="#css-custom">CSS custom</a></li>
+</ul>
+</li>
+<li><a href="#divers">Divers</a></li>
+<li><a href="#image">Image</a></li>
+<li><a href="#notes-de-bas-de-page">Notes de bas de page</a></li>
+</ul>
+<h1 id="1-num%C3%A9ros-de-titres">1. Numéros de titres</h1>
+<p>Mise à jour des # titres auto avec <code>Markdown All in One</code> :<br><br>
+<code>ctrl shift p : &gt;add/update section numbers</code> pour update<br>
+<code>ctrl shift p : &gt;remove section numbers</code> pour supprimer</p>
+<h2 id="11-titre-2">1.1. Titre 2</h2>
+<h3 id="111-sous-titre">1.1.1 Sous titre</h3>
+<h4 id="1111-beaucoup-de-1">1.1.1.1 beaucoup de 1</h4>
+<h1 id="2-titre-3">2. Titre 3</h1>
+<h1 id="styles">Styles</h1>
+<ul>
+<li>puces</li>
+<li><img class="emoji" alt="smile" src="data:image/png;base64,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" />
+<ul>
+<li>😎</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>abc</li>
+<li>def
+<ul>
+<li>ghi
+<ul>
+<li>jkl</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>citation</p>
+</blockquote>
+<ul>
+<li><input type="checkbox" id="checkbox0"><label for="checkbox0">tache</label></li>
+<li><input type="checkbox" id="checkbox1" checked="true"><label for="checkbox1">Faite</label></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">style</th>
+<th style="text-align:right">code</th>
+<th>raccourci (Markdown all in one)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>gras</strong></td>
+<td style="text-align:right"><code>**gras**</code></td>
+<td><code>ctrl b</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><em>italique</em></td>
+<td style="text-align:right"><code>*italique*</code></td>
+<td><code>ctrl i</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><u>souligné</u></td>
+<td style="text-align:right"><code>&lt;u&gt;souligné&lt;/u&gt;</code></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"><s>barré</s></td>
+<td style="text-align:right"><code>~~barré~~</code></td>
+<td><code>alt s</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>code</code></td>
+<td style="text-align:right"><code>`code`</code></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">bloc de code (voir plus bas)</td>
+<td style="text-align:right"><code>```type code ```</code></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="...">lien</a></td>
+<td style="text-align:right"><code>[lien](...)</code></td>
+<td><code>ctrl v</code> un lien en sélectionnant du texte</td>
+</tr>
+<tr>
+<td style="text-align:center"><img src="..." alt="image"></td>
+<td style="text-align:right"><code>![image](...)</code></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">note de bas de page[^1][^nom]</td>
+<td style="text-align:right"><code>[^1]</code> <code>[^nom]</code></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">$\LaTeX : \varphi(n) \rArr x$</td>
+<td style="text-align:right"><code>$...$</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>bloc de code</strong> :<br>
+multiline</p>
+<pre class="hljs"><code><div>a = <span class="hljs-string">"hello world"</span> 
+print(a) 
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">var</span> a = <span class="hljs-string">"hello world, avec une très longue ligne de code qui dépasse la largeur de la fenêtre lors de l'exportation en PDF de ce document"</span>
+system.out.println(a)
+</div></code></pre>
+<blockquote>
+<p>Dans la preview, un slider s'affiche. Pour l'export avec Puppeteer (<code>Markdown Preview Enhanced</code>), le texte est tronqué si on ajoute pas cette option dans le css (ajout expliqué <a href="#css-custom">ici</a>) :</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">@media</span> print {
+    <span class="hljs-selector-tag">pre</span><span class="hljs-selector-attr">[class*=<span class="hljs-string">"language-"</span>]</span> {
+        <span class="hljs-attribute">white-space</span>: pre-wrap;
+    }
+}
+</div></code></pre>
+<p>le <code>@media print</code> permet de conserver le slider dans la preview`</p>
+</blockquote>
+<blockquote>
+<p>les blocs de code pour les types <code>plantuml</code> et <code>mermaid</code> ne peuvent être affichés tel quel, ils sont convertis en diagrammes, voir <a href="#diagrammes">Diagrammes</a></p>
+</blockquote>
+<p>[^1]: note de bas de page #1<br>
+[^nom]: bloc de code<br>
+avec plusieurs lignes</p>
+<h1 id="diagrammes">Diagrammes</h1>
+<p>Si les blocs de code prennent le type <code>plantuml</code> ou <code>mermaid</code>, ils sont automatiquement interprétés et affichés.</p>
+<blockquote>
+<p>Du moins pour l'extension <code>Markdown Preview Enhanced</code>.</p>
+</blockquote>
+<h2 id="plantuml">PlantUML</h2>
+<pre class="hljs"><code><div>@startuml
+Bob -[#red]&gt; Alice : hello
+Alice -[#0000FF]-&gt;Bob : ok
+@enduml
+</div></code></pre>
+<pre class="hljs"><code><div>@startuml
+Bob -[#red]&gt; Alice : hello
+Alice -[#0000FF]-&gt;Bob : ok
+@enduml
+</div></code></pre>
+<h2 id="mermaid">Mermaid</h2>
+<pre class="hljs"><code><div>stateDiagram
+    [*] --&gt; First
+    state First {
+        [*] --&gt; second
+        second --&gt; [*]
+    }
+</div></code></pre>
+<pre><code class="language-mermaid"><div class="mermaid">stateDiagram
+    [*] --> First
+    state First {
+        [*] --> second
+        second --> [*]
+    }
+</div></code></pre>
+<h1 id="nouvelle-page-html--pdf">Nouvelle page (HTML / PDF)</h1>
+<p>Faire un saut de page au format pdf ou impression navigateur :</p>
+<ul>
+<li><code>&lt;div style=&quot;page-break-after: always;&quot;&gt;&lt;/div&gt;&quot;</code>, // syntaxe pure HTML</li>
+<li><code>&lt;div class=&quot;page&quot;&gt;&lt;/div&gt;</code> <span style="color: #46b7ae; font-style: italic; font-size: 0.85rem">// Simplification dans notre css, l'extension <code>markdown-pdf</code> la contient de base</span></li>
+</ul>
+<blockquote>
+<p><span style="color: #46b7ae; font-style: italic; font-size: 0.85rem">// même si <code>page-break-after</code> est marqué comme <a href="https://developer.mozilla.org/fr/docs/Web/CSS/break-after">déprécié</a>, puppeteer ne gère pas le <code>break-after</code></span></p>
+</blockquote>
+<div class="page"></div>
+<h1 id="markdown-preview-enhanced">Markdown Preview Enhanced</h1>
+<p>En 1ere ligne du fichier Markdown, possibilité d'utiliser le <code>front-matter</code> pour configurer le rendu HTML</p>
+<pre class="hljs"><code><div><span class="hljs-meta">---</span>
+<span class="hljs-attr">config1:</span> <span class="hljs-string">value1</span>
+<span class="hljs-attr">config2:</span> <span class="hljs-string">value2</span>
+<span class="hljs-meta">---</span>
+</div></code></pre>
+<p>Configuration possible <span style="color: #46b7ae; font-style: italic; font-size: 0.85rem">(testé)</span>  :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">config</th>
+<th style="text-align:left">description</th>
+<th style="text-align:left">valeur par défaut</th>
+<th>type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">title</td>
+<td style="text-align:left">titre de la page</td>
+<td style="text-align:left">nom du fichier sans l'extension</td>
+<td>texte</td>
+</tr>
+<tr>
+<td style="text-align:left">print_background</td>
+<td style="text-align:left">utiliser le style du prévisualiseur</td>
+<td style="text-align:left"><code>false</code></td>
+<td>booléen</td>
+</tr>
+<tr>
+<td style="text-align:left">puppeteer</td>
+<td style="text-align:left">Configuration de l'export &quot;Chrome (Pupeeteer)&quot;</td>
+<td style="text-align:left">-</td>
+<td>objet</td>
+</tr>
+<tr>
+<td style="text-align:left">puppeteer.format</td>
+<td style="text-align:left">Taille de la feuille</td>
+<td style="text-align:left">A4</td>
+<td>A4, A3, Letter, etc</td>
+</tr>
+<tr>
+<td style="text-align:left">puppeteer.margin</td>
+<td style="text-align:left">Marge de la page</td>
+<td style="text-align:left">-</td>
+<td>objet</td>
+</tr>
+<tr>
+<td style="text-align:left">puppeteer.printBackground</td>
+<td style="text-align:left">Afficher les couleurs de background</td>
+<td style="text-align:left"><code>false</code></td>
+<td>booléen</td>
+</tr>
+<tr>
+<td style="text-align:left">puppeteer.displayHeaderFooter</td>
+<td style="text-align:left">Afficher les headers et footers</td>
+<td style="text-align:left"><code>false</code></td>
+<td>booléen</td>
+</tr>
+<tr>
+<td style="text-align:left">puppeteer.headerTemplate</td>
+<td style="text-align:left">Template HTML du header</td>
+<td style="text-align:left">-</td>
+<td>HTML</td>
+</tr>
+<tr>
+<td style="text-align:left">puppeteer.footerTemplate</td>
+<td style="text-align:left">Template HTML du footer</td>
+<td style="text-align:left">-</td>
+<td>HTML</td>
+</tr>
+</tbody>
+</table>
+<h2 id="css-custom">CSS custom</h2>
+<p><code>C:\Users\[utilisateur]\.mume\style.less</code> sera la feuille de style par défaut, mais il est possible d'en ajouter de cette manière (ici relatif à ce fichier md) : <code>@import &quot;css.less&quot;</code><br>
+<code>.css</code> est aussi valide, mais non visible dans la prévisu.</p>
+<p>En cas de modification dans le fichier importé, il est nécessaire de recharger la prévisu pour prendre en compte les changements.</p>
+<h1 id="divers">Divers</h1>
+<p>Ligne séparatrice : au moins 3 <code>*</code> ou <code>-</code> ou <code>_</code> sur une ligne</p>
+<hr>
+<hr>
+<hr>
+<h1 id="image">Image</h1>
+<blockquote>
+<p>La taille des deux images ci-après est exactement la même !<br>
+Sauf l'une est horizontale et l'autre verticale (respectivement 2800x1600 et 1600x2800).<br>
+La taille de l'image est adaptée à la largeur de la fenêtre de prévisualisation, ou la taille de l'export PDF.</p>
+</blockquote>
+<!-- https://imgur.com/a/kqEQa8r -->
+<p>Une large image :<br>
+<img src="https://imgur.com/cL5ix38.png" alt=""></p>
+<p>Une longue image :<br>
+<img src="https://imgur.com/erhoA7E.png" alt=""></p>
+<p>Pour redimensionner une image, passer par html plutôt que markdown :<br>
+<img src="https://imgur.com/erhoA7E.png" height="200"></p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"chemin"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"200"</span>&gt;</span>
+</div></code></pre>
+<h1 id="notes-de-bas-de-page">Notes de bas de page</h1>
+<p>(<code>Markdown Preview Enhanced</code>)<br>
+Même si elle sont créé avant, elle seront affiché en fin de document<br>
+Nommé une note permet de la réutiliser plus facilement, mais son index sera visible dans l'output (HTML, prévisu)</p>
+
+</body>
+</html>
