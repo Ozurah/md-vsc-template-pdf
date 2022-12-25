@@ -1,3 +1,3 @@
-- Revoir le jugement sur la TOC de Markdown Preview Enhanced<br>
-- titre sur 2 page (coupure horizontale)
-https://stackoverflow.com/questions/65055139/markdown-preview-enhanced-vscode-run-code-chunk ????
+- Revoir le jugement sur la TOC de Markdown Preview Enhanced
+- titre sur 2 page (coupure horizontale) (Markdown Preview Enhanced : Puppeteer)
+- https://stackoverflow.com/questions/65055139/markdown-preview-enhanced-vscode-run-code-chunk ????

@@ -79,6 +79,14 @@ puppeteer:
 
 # Extensions VSCode
 
+Les quels j'<span style="color: green">utilise</span> en se moment :
+ - Markdown All in One
+ - Markdown Preview Enhanced
+ - Paste Image
+
+Je n'<span style="color: red">utilise plus</span> :
+ - Markdown PDF
+
 ## Markdown all in one
 - https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one
 - TDM
@@ -211,7 +219,7 @@ system.out.println(a)
 >     }
 > }
 > ```
-> le `@media print` permet de conserver le slider dans la preview`
+> le `@media print` permet de conserver le slider dans la preview
 
 > les blocs de code pour les types `plantuml` et `mermaid` ne peuvent être affichés tel quel, ils sont convertis en diagrammes, voir [Diagrammes](#diagrammes)
 
